@@ -4,11 +4,12 @@ import Image from "next/image";
 import Link from "next/link";
 import { Section, FadeUp, FadeUpStagger, fadeUpItem } from "@/components/Section";
 import { motion } from "framer-motion";
+import { CountUp } from "@/components/ui/count-up";
 
 const metrics = [
-  { value: "40+", label: "Progetti completati" },
-  { value: "3+", label: "Anni di esperienza" },
-  { value: "25+", label: "Brand supportati" },
+  { value: 40, label: "Progetti completati", suffix: "+" },
+  { value: 3, label: "Anni di esperienza", suffix: "+" },
+  { value: 25, label: "Brand supportati", suffix: "+" },
 ];
 
 export default function ChiSiamoPage() {
@@ -58,7 +59,8 @@ export default function ChiSiamoPage() {
                 {metrics.map((m) => (
                   <div key={m.label}>
                     <p className="text-3xl font-bold tabular-nums text-[#5CA9E9] md:text-4xl">
-                      {m.value}
+                      <CountUp to={m.value} duration={1.6} />
+                      {m.suffix && <span>{m.suffix}</span>}
                     </p>
                     <p className="mt-1 text-sm text-[var(--text-muted)]">
                       {m.label}

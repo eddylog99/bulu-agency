@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import { InteractiveHoverButton } from "@/components/ui/interactive-hover-button";
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -63,11 +64,11 @@ export default function Navbar() {
             ))}
           </nav>
 
-          <Link
-            href="/book-a-call"
-            className="btn-glow hidden items-center justify-center rounded-full bg-gradient-to-r from-[#5CA9E9] to-[#38BDF8] px-4 py-2 text-xs font-semibold text-white transition hover:opacity-90 md:inline-flex md:px-5 md:text-sm"
-          >
-            Prenota una call
+          <Link href="/book-a-call" className="hidden md:inline-flex">
+            <InteractiveHoverButton
+              text="Prenota una call"
+              className="px-5 text-xs md:text-sm"
+            />
           </Link>
 
           {/* Hamburger menu (solo mobile) */}
@@ -100,11 +101,11 @@ export default function Navbar() {
                 </Link>
               ))}
               <div className="mt-2 border-t border-white/10 px-3 pt-3">
-                <Link
-                  href="/book-a-call"
-                  className="btn-glow flex w-full items-center justify-center rounded-full bg-gradient-to-r from-[#5CA9E9] to-[#38BDF8] px-4 py-3.5 text-sm font-semibold text-white transition hover:opacity-90"
-                >
-                  Prenota una call
+                <Link href="/book-a-call" className="flex w-full justify-center">
+                  <InteractiveHoverButton
+                    text="Prenota una call"
+                    className="w-full justify-center py-3.5 text-sm"
+                  />
                 </Link>
               </div>
             </div>

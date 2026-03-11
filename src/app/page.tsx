@@ -4,9 +4,17 @@ import React, { useState, FormEvent } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { Section, FadeUp, FadeUpStagger, fadeUpItem } from "@/components/Section";
+import {
+  Section,
+  FadeUp,
+  FadeUpStagger,
+  fadeUpItem,
+} from "@/components/Section";
 import { CustomSelect } from "@/components/CustomSelect";
 import LogoMarquee from "@/components/LogoMarquee";
+import { ShootingStars } from "@/components/ui/shooting-stars";
+import { InteractiveHoverButton } from "@/components/ui/interactive-hover-button";
+import { CountUp } from "@/components/ui/count-up";
 
 const BUDGET_OPTIONS = [
   { value: "<5k", label: "Fino a 5.000 €" },
@@ -87,6 +95,21 @@ export default function Home() {
       {/* Hero */}
       <Section spacing={false}>
         <div className="hero-glow absolute left-0 right-0 top-0 h-[80vh] max-h-[700px] pointer-events-none" />
+        <div className="pointer-events-none absolute inset-0 -z-10">
+          <div className="starfield" />
+          <ShootingStars
+            starColor="#5CA9E9"
+            trailColor="#38BDF8"
+            minSpeed={12}
+            maxSpeed={30}
+            minDelay={1600}
+            maxDelay={4200}
+            maxStars={14}
+            starWidth={22}
+            starHeight={3}
+            className="opacity-90"
+          />
+        </div>
         <div className="relative pt-8 pb-20 md:pt-12 md:pb-28">
           <FadeUp>
             <div className="mb-6 flex justify-center">
@@ -98,17 +121,14 @@ export default function Home() {
               <span className="bg-gradient-to-r from-[#5CA9E9] via-[#38BDF8] to-[#FFFFFF] bg-clip-text text-transparent">
                 Esperienze digitali che fanno crescere il tuo business
               </span>
-            </h1>
+          </h1>
             <p className="text-hero-sub mx-auto mt-6 max-w-2xl text-center">
               Un unico partner per strategia, web, contenuti e advertising.
               Risultati concreti e misurabili.
             </p>
             <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
-              <Link
-                href="/contattaci"
-                className="btn-glow inline-flex items-center justify-center rounded-full bg-gradient-to-r from-[#5CA9E9] to-[#38BDF8] px-6 py-3 text-sm font-semibold text-white transition hover:opacity-90"
-              >
-                Inizia un progetto
+              <Link href="/contattaci">
+                <InteractiveHoverButton text="Inizia un progetto" />
               </Link>
               <Link
                 href="/servizi"
@@ -164,17 +184,18 @@ export default function Home() {
         <div className="grid gap-12 lg:grid-cols-[1fr_1.2fr] lg:items-center">
           <div className="grid grid-cols-2 gap-4">
             {[
-              { value: "40+", label: "Progetti completati" },
-              { value: "2M+", label: "Utenti raggiunti" },
-              { value: "3+", label: "Anni di esperienza" },
-              { value: "25+", label: "Brand supportati" },
+              { value: 40, label: "Progetti completati", suffix: "+" },
+              { value: 2, label: "Milioni di utenti raggiunti", suffix: "M+" },
+              { value: 3, label: "Anni di esperienza", suffix: "+" },
+              { value: 25, label: "Brand supportati", suffix: "+" },
             ].map((item) => (
               <FadeUp
                 key={item.label}
                 className="glass-card flex flex-col justify-center rounded-[var(--radius-card)] p-6 min-h-[120px]"
               >
                 <span className="text-3xl font-bold tabular-nums text-[#5CA9E9] md:text-4xl">
-                  {item.value}
+                  <CountUp to={item.value} duration={1.6} />
+                  {item.suffix && <span>{item.suffix}</span>}
                 </span>
                 <p className="mt-2 text-sm font-medium text-[var(--text-primary)]">
                   {item.label}
@@ -220,7 +241,7 @@ export default function Home() {
         <FadeUp>
           <div className="glass-card overflow-hidden rounded-[var(--radius-card)] border-[var(--border-subtle)] md:flex">
             <div className="img-zoom relative h-64 flex-1 md:h-80">
-              <Image
+            <Image
                 src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&h=500&fit=crop"
                 alt="Progetto digitale"
                 fill
@@ -240,11 +261,11 @@ export default function Home() {
                 Un percorso integrato per portare il brand online con
                 risultati concreti e misurabili.
               </p>
-              <Link
-                href="/servizi"
-                className="btn-glow mt-6 inline-flex w-fit items-center justify-center rounded-full bg-gradient-to-r from-[#5CA9E9] to-[#38BDF8] px-5 py-2.5 text-sm font-semibold text-white transition hover:opacity-90"
-              >
-                Vedi il progetto
+              <Link href="/servizi">
+                <InteractiveHoverButton
+                  text="Vedi il progetto"
+                  className="mt-6"
+                />
               </Link>
             </div>
           </div>
@@ -338,9 +359,16 @@ export default function Home() {
               <label htmlFor="home-progetto" className="text-xs font-medium text-[var(--text-secondary)]">Descrivi in modo specifico il progetto *</label>
               <textarea id="home-progetto" name="progetto" required rows={5} className="w-full rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-secondary)] px-4 py-2.5 text-sm text-[var(--text-primary)] placeholder:text-[var(--text-muted)] focus:border-[#5CA9E9]/60 focus:outline-none focus:ring-2 focus:ring-[#38BDF8]/25" placeholder="Obiettivi, tempistiche, contesto..." />
             </div>
-            <button type="submit" disabled={contactStatus === "submitting"} className="btn-glow mt-6 w-full rounded-full bg-gradient-to-r from-[#5CA9E9] to-[#38BDF8] px-6 py-3 text-sm font-semibold text-white transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-70">
-              {contactStatus === "submitting" ? "Invio in corso..." : "Invia messaggio"}
-            </button>
+            <InteractiveHoverButton
+              type="submit"
+              disabled={contactStatus === "submitting"}
+              text={
+                contactStatus === "submitting"
+                  ? "Invio in corso..."
+                  : "Invia messaggio"
+              }
+              className="mt-6 w-full justify-center"
+            />
             {contactStatus === "success" && (
               <p className="mt-4 text-sm text-emerald-400">Grazie! La tua richiesta è stata inviata. Ti ricontatteremo al più presto.</p>
             )}

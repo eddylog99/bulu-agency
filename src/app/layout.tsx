@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import CursorDot from "@/components/CursorDot";
+import ScrollToTop from "@/components/ScrollToTop";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -33,6 +34,7 @@ export default function RootLayout({
       >
         <CursorDot />
         <div className="flex min-h-screen flex-col">
+          <ScrollToTop />
           <Navbar />
           <main className="mx-auto w-full max-w-[var(--content-max)] flex-1 px-6 pt-32 pb-0">
             {children}
