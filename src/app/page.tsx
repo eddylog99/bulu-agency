@@ -151,7 +151,7 @@ export default function Home() {
       <Section>
         <FadeUp>
           <h2 className="text-section-title max-w-3xl text-[var(--text-primary)]">
-            Come possiamo <span className="faq-heading">aiutarti</span>.
+            Come possiamo <span className="faq-heading">aiutarti</span>
           </h2>
         </FadeUp>
         <FadeUpStagger className="mt-12 grid gap-6 sm:grid-cols-2">
