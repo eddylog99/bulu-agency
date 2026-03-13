@@ -22,6 +22,7 @@ const legal = [
   { href: "/privacy", label: "Privacy Policy" },
   { href: "/termini-condizioni", label: "Termini e condizioni" },
   { href: "/cookie-policy", label: "Cookie policy" },
+  { href: "/disclaimer", label: "Disclaimer" },
 ];
 
 export default function Footer() {

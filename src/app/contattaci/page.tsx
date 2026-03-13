@@ -43,16 +43,28 @@ export default function ContattaciPage() {
   const [status, setStatus] = useState<"idle" | "submitting" | "success">("idle");
   const [formKey, setFormKey] = useState(0);
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setStatus("submitting");
-    const formData = new FormData(event.currentTarget);
-    console.log("Richiesta contatto BULU AGENCY", Object.fromEntries(formData));
-    setTimeout(() => {
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+    const payload: Record<string, string> = { source: "Contattaci" };
+    formData.forEach((value, key) => {
+      payload[key] = String(value);
+    });
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      if (!res.ok) throw new Error("Invio fallito");
       setStatus("success");
-      event.currentTarget.reset();
+      form.reset();
       setFormKey((k) => k + 1);
-    }, 700);
+    } catch {
+      setStatus("idle");
+    }
   }
 
   return (

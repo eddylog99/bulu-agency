@@ -78,16 +78,28 @@ export default function Home() {
   >("idle");
   const [formKey, setFormKey] = useState(0);
 
-  function handleContactSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleContactSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setContactStatus("submitting");
-    const formData = new FormData(event.currentTarget);
-    console.log("Richiesta contatto BULU AGENCY (home)", Object.fromEntries(formData));
-    setTimeout(() => {
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+    const payload: Record<string, string> = { source: "Home" };
+    formData.forEach((value, key) => {
+      payload[key] = String(value);
+    });
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      if (!res.ok) throw new Error("Invio fallito");
       setContactStatus("success");
-      event.currentTarget.reset();
+      form.reset();
       setFormKey((k) => k + 1);
-    }, 700);
+    } catch {
+      setContactStatus("idle");
+    }
   }
 
   return (

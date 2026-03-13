@@ -110,4 +110,17 @@ Dopo il primo `git remote add origin ...` e `git push -u origin main`, per i pro
 
 ---
 
-**Hai già fatto il commit in locale.** Prossimo passo: crea il repository su GitHub, aggiungi il remote con il tuo URL e lancia `git push -u origin main`. Poi collega il repo a Vercel come in Parte 2.
+## Email: form contatto e prenotazione call
+
+Le richieste dai form (Home, Contattaci, Book a call) vengono inviate a **info@buluagency.it** usando il **tuo account email in SMTP** (nessun servizio esterno tipo Resend).
+
+1. In locale: crea **`.env.local`** nella root con le credenziali del tuo account **info@buluagency.it** (es. da Aruba):
+   ```
+   SMTP_HOST=smtp.aruba.it
+   SMTP_PORT=465
+   SMTP_USER=info@buluagency.it
+   SMTP_PASS=la_tua_password_email
+   ```
+2. Sul **VPS**: crea **`.env`** in `/var/www/bulu-agency` con le stesse variabili e riavvia l’app (`pm2 restart bulu-agency`).
+
+Senza `SMTP_PASS` le email non partono (il sito funziona, i form rispondono "success", ma nessuna mail viene inviata). Vedi `.env.example` per un template. Se usi un provider diverso da Aruba, cambia `SMTP_HOST` e `SMTP_PORT` (es. Gmail: smtp.gmail.com, 587).
