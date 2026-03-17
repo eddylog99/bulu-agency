@@ -150,7 +150,7 @@ export default function ChiSiamoPage() {
             Pronto a far crescere il tuo brand?
           </h2>
           <Link
-            href="/book-a-call"
+            href="/prenota-una-call"
             className="btn-glow mt-8 inline-flex items-center justify-center rounded-full bg-gradient-to-r from-[#5CA9E9] to-[#38BDF8] px-8 py-3 text-sm font-semibold text-white transition hover:opacity-90"
           >
             Prenota una call

@@ -234,7 +234,7 @@ export default function TestComunicazionePage() {
                   Rifai il test
                 </button>
                 <Link
-                  href="/book-a-call"
+                  href="/prenota-una-call"
                   className="btn-glow inline-flex items-center justify-center rounded-full bg-gradient-to-r from-[#5CA9E9] to-[#38BDF8] px-6 py-2.5 text-xs font-semibold text-white transition hover:opacity-90"
                 >
                   Parliamo della tua comunicazione

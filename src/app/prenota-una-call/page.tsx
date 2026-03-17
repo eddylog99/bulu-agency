@@ -41,7 +41,7 @@ function buildAvailableDates(days = 30) {
 
 const availableDates = buildAvailableDates(14);
 
-export default function BookACallPage() {
+export default function PrenotaUnaCallPage() {
   const [selectedDate, setSelectedDate] = useState<string | null>(
     formatDateKey(availableDates[0])
   );
@@ -132,7 +132,6 @@ export default function BookACallPage() {
 
       <Section>
         <div className="grid gap-10 lg:grid-cols-[1.1fr_1.3fr] lg:items-start">
-          {/* Calendario + orari */}
           <FadeUp>
             <div className="glass-card rounded-[var(--radius-card)] p-6 md:p-7">
               <h2 className="text-card-title text-[var(--text-primary)]">
@@ -222,7 +221,6 @@ export default function BookACallPage() {
             </div>
           </FadeUp>
 
-          {/* Form dettagli progetto */}
           <FadeUp>
             <form
               onSubmit={handleSubmit}
@@ -461,23 +459,17 @@ function formatWeekdayShort(date: Date) {
 }
 
 function createSlotsForDate(date: Date): string[] {
-  const day = date.getDay(); // 0 domenica, 1 lunedì, ... 6 sabato
+  const day = date.getDay();
 
   if (day >= 1 && day <= 5) {
-    // Lunedì - Venerdì: 17:30 - 22:00 (ultimo slot prenotabile 21:30)
     return buildSlotsBetween(17, 30, 22, 0);
   }
-
   if (day === 6) {
-    // Sabato: 9:00 - 20:00
     return buildSlotsBetween(9, 0, 20, 0);
   }
-
   if (day === 0) {
-    // Domenica: 15:00 - 22:00
     return buildSlotsBetween(15, 0, 22, 0);
   }
-
   return [];
 }
 
@@ -490,17 +482,11 @@ function buildSlotsBetween(
   const slots: string[] = [];
   let current = startHour * 60 + startMinute;
   const end = endHour * 60 + endMinute;
-
   while (current + SLOT_DURATION_MINUTES <= end) {
-    const h = Math.floor(current / 60)
-      .toString()
-      .padStart(2, "0");
+    const h = Math.floor(current / 60).toString().padStart(2, "0");
     const m = (current % 60).toString().padStart(2, "0");
     slots.push(`${h}:${m}`);
     current += SLOT_DURATION_MINUTES;
   }
-
   return slots;
 }
-
-

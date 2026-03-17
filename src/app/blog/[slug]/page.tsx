@@ -21,7 +21,7 @@ export default async function ArticlePage({ params }: Props) {
         <div className="relative pb-12 pt-4 md:pb-16">
           <FadeUp>
             <Link
-              href="/insight"
+              href="/blog"
               className="inline-flex items-center gap-2 rounded-full border border-[var(--border-subtle)] bg-[var(--bg-secondary)] px-4 py-2.5 text-sm font-medium text-[var(--text-primary)] transition hover:border-[#5CA9E9]/60 hover:bg-white/5 hover:text-[#5CA9E9]"
             >
               <span aria-hidden>←</span>

@@ -10,7 +10,7 @@ const navLinks = [
   { href: "/", label: "Home" },
   { href: "/servizi", label: "Servizi" },
   { href: "/chi-siamo", label: "Chi siamo" },
-  { href: "/insight", label: "Blog" },
+  { href: "/blog", label: "Blog" },
   { href: "/contattaci", label: "Contattaci" },
 ];
 
@@ -64,7 +64,7 @@ export default function Navbar() {
             ))}
           </nav>
 
-          <Link href="/book-a-call" className="hidden md:inline-flex">
+          <Link href="/prenota-una-call" className="hidden md:inline-flex">
             <InteractiveHoverButton
               text="Prenota una call"
               className="px-5 text-xs md:text-sm"
@@ -101,7 +101,7 @@ export default function Navbar() {
                 </Link>
               ))}
               <div className="mt-2 border-t border-white/10 px-3 pt-3">
-                <Link href="/book-a-call" className="flex w-full justify-center">
+                <Link href="/prenota-una-call" className="flex w-full justify-center">
                   <InteractiveHoverButton
                     text="Prenota una call"
                     className="w-full justify-center py-3.5 text-sm"

@@ -110,7 +110,7 @@ export default function ServiziPage() {
                   ))}
                 </ul>
                 <Link
-                  href="/book-a-call"
+                  href="/prenota-una-call"
                   className="btn-glow mt-6 inline-flex items-center justify-center rounded-full bg-gradient-to-r from-[#5CA9E9] to-[#38BDF8] px-5 py-2.5 text-sm font-semibold text-white transition hover:opacity-90"
                 >
                   Richiedi consulenza
@@ -152,7 +152,7 @@ export default function ServiziPage() {
             ti proponiamo una call di allineamento.
           </p>
           <Link
-            href="/book-a-call"
+            href="/prenota-una-call"
             className="btn-glow mt-8 inline-flex items-center justify-center rounded-full bg-gradient-to-r from-[#5CA9E9] to-[#38BDF8] px-8 py-3 text-sm font-semibold text-white transition hover:opacity-90"
           >
             Prenota una call

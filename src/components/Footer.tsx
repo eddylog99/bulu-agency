@@ -2,12 +2,13 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { Instagram, Linkedin } from "lucide-react";
 
 const pages = [
   { href: "/", label: "Home" },
   { href: "/servizi", label: "Servizi" },
   { href: "/chi-siamo", label: "Chi siamo" },
-  { href: "/insight", label: "Blog" },
+  { href: "/blog", label: "Blog" },
   { href: "/contattaci", label: "Contattaci" },
 ];
 
@@ -32,9 +33,12 @@ export default function Footer() {
 
       <div className="relative mx-auto max-w-[var(--content-max)] px-6 pt-16 pb-8">
         <div className="flex flex-col gap-12 lg:flex-row lg:items-start lg:gap-32 xl:gap-48">
-          {/* Logo + titolo e descrizione */}
+          {/* Logo + titolo e descrizione + social */}
           <div className="flex-shrink-0 max-w-[280px] space-y-3">
-            <Link href="/" className="inline-block bg-transparent">
+            <Link
+              href="/"
+              className="inline-flex flex-col gap-3 bg-transparent focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--glow-blue)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--bg-secondary)]"
+            >
               <Image
                 src="/logo.png"
                 alt="BULU AGENCY"
@@ -43,15 +47,36 @@ export default function Footer() {
                 className="h-14 w-14 object-contain [background:transparent]"
                 unoptimized
               />
+              <p className="font-bold text-sm uppercase tracking-wider text-white">
+                BULU AGENCY
+              </p>
+              <p className="text-sm leading-relaxed text-[var(--text-secondary)]">
+                Dal sogno alla strategia.
+                <br />
+                Partner per un marketing che evolve.
+              </p>
             </Link>
-            <p className="font-bold text-sm uppercase tracking-wider text-white">
-              BULU AGENCY
-            </p>
-            <p className="text-sm leading-relaxed text-[var(--text-secondary)]">
-              Dal sogno alla strategia.
-              <br />
-              Partner per un marketing che evolve.
-            </p>
+
+            <div className="mt-3 flex items-center gap-3">
+              <a
+                href="https://www.instagram.com/buluagency/"
+                target="_blank"
+                rel="noreferrer"
+                className="flex h-9 w-9 items-center justify-center rounded-xl border border-[var(--border-subtle)] text-[var(--text-secondary)] transition hover:border-[var(--glow-blue)] hover:text-white"
+                aria-label="Instagram"
+              >
+                <Instagram className="h-4 w-4" />
+              </a>
+              <a
+                href="https://www.linkedin.com/company/bulu-agency"
+                target="_blank"
+                rel="noreferrer"
+                className="flex h-9 w-9 items-center justify-center rounded-xl border border-[var(--border-subtle)] text-[var(--text-secondary)] transition hover:border-[var(--glow-blue)] hover:text-white"
+                aria-label="LinkedIn"
+              >
+                <Linkedin className="h-4 w-4" />
+              </a>
+            </div>
           </div>
 
           {/* Colonne Pagine, Servizi, Legale sulla stessa riga, distribuite in modo omogeneo */}

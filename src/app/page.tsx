@@ -273,7 +273,7 @@ export default function Home() {
                 Un percorso integrato per portare il brand online con
                 risultati concreti e misurabili.
               </p>
-              <Link href="/servizi">
+              <Link href="/blog/pmi-roma-nord-seo-geo">
                 <InteractiveHoverButton
                   text="Vedi il progetto"
                   className="mt-6"
