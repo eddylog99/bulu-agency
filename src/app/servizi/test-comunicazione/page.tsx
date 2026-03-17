@@ -15,6 +15,7 @@ const questions: Question[] = [
       { value: 'scritti-chiari', label: 'Sono scritti, chiari e condivisi con il team', score: 0 },
       { value: 'abbastanza-chiari', label: 'Sono abbastanza chiari ma non sempre condivisi', score: 1 },
       { value: 'non-chiari', label: 'Non sono scritti o cambiano spesso', score: 2 },
+      { value: 'mai-definiti', label: 'Non abbiamo obiettivi definiti o non li comunichiamo', score: 2 },
     ],
   },
   {
@@ -24,6 +25,7 @@ const questions: Question[] = [
       { value: 'personas', label: 'Abbiamo personas e segmenti ben definiti', score: 0 },
       { value: 'idea-generica', label: 'Abbiamo un’idea generale ma non dettagliata', score: 1 },
       { value: 'tutti', label: 'Parliamo “a tutti” senza un target preciso', score: 2 },
+      { value: 'nessun-target', label: 'Non abbiamo mai definito un target specifico', score: 2 },
     ],
   },
   {
@@ -33,6 +35,7 @@ const questions: Question[] = [
       { value: 'coerenti', label: 'Coerenti su sito, social e materiali', score: 0 },
       { value: 'a-macchia', label: 'Abbastanza coerenti ma con differenze tra canali', score: 1 },
       { value: 'dispersivi', label: 'Molto diversi a seconda di chi comunica', score: 2 },
+      { value: 'mai-definiti-messaggi', label: 'Non abbiamo mai definito messaggi chiave', score: 2 },
     ],
   },
   {
@@ -42,6 +45,7 @@ const questions: Question[] = [
       { value: 'piano-stabile', label: 'Con un piano editoriale stabile e calendarizzato', score: 0 },
       { value: 'quando-riusciamo', label: 'Pubblicando quando riusciamo, senza calendario fisso', score: 1 },
       { value: 'rare-volte', label: 'Solo in occasione di lanci o fiere', score: 2 },
+      { value: 'mai-contenuti', label: 'Praticamente mai: non pubblichiamo contenuti', score: 2 },
     ],
   },
   {
@@ -51,6 +55,7 @@ const questions: Question[] = [
       { value: 'kpi-business', label: 'KPI legati al business (lead, opportunità, vendite)', score: 0 },
       { value: 'vanity-and-kpi', label: 'Un mix di KPI di business e vanity metrics', score: 1 },
       { value: 'solo-vanity', label: 'Principalmente like, follower, visualizzazioni', score: 2 },
+      { value: 'mai-kpi', label: 'Non guardiamo quasi mai numeri specifici', score: 2 },
     ],
   },
   {
@@ -60,6 +65,7 @@ const questions: Question[] = [
       { value: 'mensile', label: 'Almeno una volta al mese con un report strutturato', score: 0 },
       { value: 'saltuario', label: 'Ogni tanto, quando c’è tempo', score: 1 },
       { value: 'quasi-mai', label: 'Quasi mai o solo a fine anno', score: 2 },
+      { value: 'mai-report', label: 'Non facciamo mai report o analisi dei risultati', score: 2 },
     ],
   },
   {
@@ -69,6 +75,7 @@ const questions: Question[] = [
       { value: 'coordinato', label: 'Da una regia unica che coordina tutti i canali', score: 0 },
       { value: 'parziale', label: 'Ogni canale ha un referente, ci coordiniamo ma non sempre', score: 1 },
       { value: 'silos', label: 'Ognuno lavora per conto suo, senza un allineamento costante', score: 2 },
+      { value: 'nessun-coordinamento', label: 'Non esiste alcun coordinamento tra i canali', score: 2 },
     ],
   },
 ];
@@ -78,23 +85,32 @@ function buildResult(totalScore: number) {
     return {
       title: 'La tua comunicazione è su buone basi ✨',
       body:
-        'Avete già una struttura solida: obiettivi, pubblico e messaggi sono abbastanza chiari. ' +
-        'Il prossimo passo è raffinare i dettagli (piano editoriale, reporting e coordinamento tra i canali) per scalare i risultati.',
+        'Avete già una struttura solida: obiettivi, pubblico e messaggi sono abbastanza chiari e questo vi permette di comunicare in modo coerente. ' +
+        'Il prossimo passo è raffinare i dettagli: rendere ancora più chiaro il collegamento tra comunicazione e obiettivi di business, ' +
+        'mantenere un piano editoriale stabile nel tempo e usare i dati in modo sistematico per capire cosa funziona meglio. ' +
+        'Potete iniziare concentrandovi su un solo canale prioritario (es. sito + un social principale) e costruire attorno a quello una routine di contenuti e report mensili.',
     };
   }
   if (totalScore <= 9) {
     return {
       title: 'C’è margine per migliorare 💡',
       body:
-        'Alcuni elementi della comunicazione funzionano, altri sono più deboli. ' +
-        'In particolare, vale la pena lavorare su obiettivi, allineamento dei messaggi e KPI, così ogni attività ha un ruolo chiaro nel percorso del cliente.',
+        'Alcuni elementi della comunicazione funzionano, altri sono più deboli o gestiti in modo saltuario. ' +
+        'È un buon momento per mettere ordine: chiarire pochi obiettivi misurabili, definire in modo esplicito il target e i messaggi chiave, ' +
+        'e scegliere 2–3 KPI che userete sempre per leggere i risultati (es. lead generati, richieste dal sito, chiamate prenotate). ' +
+        'Un consiglio pratico: scegliete un periodo di 90 giorni in cui testare un piano editoriale semplice ma costante, ' +
+        'con un mini-report a fine mese che vi aiuti a capire cosa tenere, cosa cambiare e cosa tagliare.',
     };
   }
   return {
     title: 'La comunicazione sta frenando la crescita 🚧',
     body:
-      'Mancano basi strutturate (obiettivi, target, messaggi e misurazione): il rischio è investire tempo e budget senza vedere risultati chiari. ' +
-      'Un percorso guidato può aiutarvi a rimettere ordine, definire una strategia e costruire azioni coordinate sui diversi canali.',
+      'In questo momento mancano alcune basi strutturate (obiettivi condivisi, target definito, messaggi chiave, KPI e momenti di analisi). ' +
+      'Il rischio è investire tempo e budget in attività scollegate – sito, social, ADV – senza vedere un ritorno chiaro. ' +
+      'Il primo passo è fare “pulizia”: decidere cosa è davvero prioritario per il business nei prossimi 6–12 mesi e quali canali servono davvero a sostenerlo. ' +
+      'Da lì potete costruire una strategia semplice: definire il posizionamento, scegliere pochi messaggi da ripetere in modo coerente, ' +
+      'e impostare un minimo di tracciamento (form di contatto, prenotazione call, campagne) per capire da dove arrivano le opportunità. ' +
+      'Se volete, possiamo aiutarvi con un percorso guidato per mettere ordine, creare una roadmap e allineare brand, sito, contenuti e campagne in un unico piano.',
   };
 }
 
